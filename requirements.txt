@@ -1,0 +1,4 @@
+# for selenium
+selenium==3.141.0
+PyYAML==5.3.1
+boto3==1.14.46
