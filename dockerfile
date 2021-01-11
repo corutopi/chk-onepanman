@@ -32,7 +32,12 @@ RUN curl https://intoli.com/install-google-chrome.sh | bash
 RUN yum install -y GConf2-3.2.6-8.el7
 
 ### install ChromeDriver
-RUN wget https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip && \
+# version confirmation command
+# $ google-chrome --version
+# new driver search below
+# https://chromedriver.chromium.org/downloads
+# RUN wget https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip && \
+RUN wget https://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip && \
     mv chromedriver /usr/local/bin && \
     rm -f chromedriver_linux64.zip
