@@ -1,8 +1,18 @@
-# chkOne
+# chk-onepanman
 
 build
 ```
 docker build -t chk-onepanman .
+```
+
+run on local
+```
+docker run -e ENV=local ^
+           -e YML_PATH=[YmlFilePath] ^
+           -v [LocalDyanmicFolder]:[YmyFolder] ^
+           -v [LocalConfFolder]:[DockerConfFolder] ^
+           --rm ^
+           chk-onepanman:latest
 ```
 
 run on aws
