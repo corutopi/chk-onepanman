@@ -23,3 +23,28 @@ docker run -e ENV=aws \
            --rm \
            chk-onepanman:latest
 ```
+
+```plantuml
+class "Config" as conf {
+}
+
+class "Singleton" as singleton {
+}
+
+abstract "MainProcess" as mp {
+    +get_story_num()
+    +put_story_num()
+    +send_mail()
+}
+
+class "AWSProcess" as aws {
+}
+
+class "LocalProcess" as local {
+}
+
+mp <|-- aws
+mp <|-- local
+conf -left-> mp
+conf -up-|> singleton
+```
