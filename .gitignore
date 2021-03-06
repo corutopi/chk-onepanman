@@ -3,6 +3,7 @@
 tmp.py
 dynamic/
 conf/*.yml
+aa_devsup/
 # ##############################################################################
 # Byte-compiled / optimized / DLL files
 __pycache__/
