@@ -1,8 +1,12 @@
 import os
 import yaml
 
+# const
+ENV_AWS = 'aws'
+ENV_LOCAL = 'local'
+
 # ENV, YML_PATH
-ENV = os.environ['ENV'] if 'ENV' in os.environ.keys() else 'local'
+ENV = os.environ['ENV'] if 'ENV' in os.environ.keys() else ENV_LOCAL
 YML_PATH = os.environ['YML_PATH'] if 'YML_PATH' in os.environ.keys() \
     else 'conf/conf.yml'
 

@@ -19,15 +19,14 @@ logger = getLogger(__name__)
 path = ''
 if conf.ENV == 'local':
     path = conf.YML_PATH
-    import src.util.local.util as util
 elif conf.ENV == 'aws':
     # from S3
     path = conf.YML_PATH
-    import src.util.aws.util as util
 
-story_num = util.get_story_num(conf.KEY_FILE_PATH,
-                               conf.AWS_ACCESS_ID,
-                               conf.AWS_SECRET_KEY)
+import src.external.body as body
+ext = body.getProcess()
+
+story_num = ext.get_story_num(conf.KEY_FILE_PATH)
 key_str = '第{}話'.format(story_num)
 
 
@@ -59,13 +58,8 @@ def main():
 
     if key_str in check_txt:
         logger.info('Web page is updated ({})'.format(key_str))
-        util.sendmail(story_num=story_num,
-                      sns_topic=conf.SNS_TOPIC,
-                      access_key_id=conf.AWS_ACCESS_ID,
-                      secret_access_key=conf.AWS_SECRET_KEY)
-        util.put_story_num(conf.KEY_FILE_PATH, story_num,
-                           access_key_id=conf.AWS_ACCESS_ID,
-                           secret_access_key=conf.AWS_SECRET_KEY)
+        ext.sendmail(story_num=story_num)
+        ext.put_story_num(conf.KEY_FILE_PATH, story_num)
     else:
         logger.info('no update ({})'.format(key_str))
     logger.info('Process End.')
