@@ -11,7 +11,7 @@ def getProcess():
         return LocalProcess()
 
 
-class MainProcess(metaclass=ABCMeta):
+class TemplateProcess(metaclass=ABCMeta):
     def __init__(self):
         pass
 
@@ -32,7 +32,7 @@ class MainProcess(metaclass=ABCMeta):
         pass
 
 
-class AwsProcess(MainProcess):
+class AwsProcess(TemplateProcess):
     def sendmail(self, story_num):
         sns = boto3.client(service_name='sns',
                            aws_access_key_id=conf.AWS_ACCESS_ID,
@@ -80,7 +80,7 @@ class AwsProcess(MainProcess):
         pass
 
 
-class LocalProcess(MainProcess):
+class LocalProcess(TemplateProcess):
     def sendmail(self, story_num):
         logging.debug('Target Web-page was updated ! Let\'s Check now !')
 
