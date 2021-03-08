@@ -37,9 +37,10 @@ def main():
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
-    # これで書きエラーを回避できるらしい
-    # WebDriverException: Message: unknown error: session deleted because of page crash
+    # メモリスペースを変更してエラー(下記)回避
+    #   WebDriverException: Message: unknown error: session deleted because of page crash
     # 参考: https://omohikane.com/python_selenium_webdriver_crashed/
+    #     : https://qiita.com/yoshi10321/items/8b7e6ed2c2c15c3344c6
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--window-size=1280,1024')
 
