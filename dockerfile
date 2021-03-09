@@ -2,8 +2,8 @@
 # base image:
 #   # docekr image のベースとしてはdebianのほうがメジャー？
 #   # python3(や selenium)の公式イメージに乗り換えるのもありかも.
-# 
-# GoogleChrome: 
+#
+# GoogleChrome:
 #   $ google-chrome-stable -version -> Google Chrome 84.0.4147.125
 #   ! May change when docker image update(or remake) !
 #
@@ -27,7 +27,8 @@ RUN yum install -y python3-3.6.8 python3-pip-9.0.3-7.el7_7
 ## https://qiita.com/onorioriori/items/4fa271daa3621e8f6fd9
 ### install Google Chrome
 # version confirmation command
-# $ google-chrome --version
+# $ google-chrome -version
+# $ google-chrome-stable -version
 RUN curl https://intoli.com/install-google-chrome.sh | bash
 
 ### install GConf2
