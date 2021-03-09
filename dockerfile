@@ -26,6 +26,8 @@ RUN yum install -y python3-3.6.8 python3-pip-9.0.3-7.el7_7
 ## まるまる以下を参考に作成. 構成等については要理解.
 ## https://qiita.com/onorioriori/items/4fa271daa3621e8f6fd9
 ### install Google Chrome
+# version confirmation command
+# $ google-chrome --version
 RUN curl https://intoli.com/install-google-chrome.sh | bash
 
 ### install GConf2
@@ -33,11 +35,15 @@ RUN yum install -y GConf2-3.2.6-8.el7
 
 ### install ChromeDriver
 # version confirmation command
-# $ google-chrome --version
-# new driver search below
-# https://chromedriver.chromium.org/downloads
-# RUN wget https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip && \
-RUN wget https://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip && \
+# $ chromedriver --version
+# new driver search below URL.
+#   https://chromedriver.chromium.org/downloads
+# Notes:
+#   GoogleChrome can be installed with only the latest version (really?).
+#   So ChromeDriver also need to be installed the latest version.
+#   Use LATEST_RELEASE tag to get the latest version number of ChromeDirver.
+RUN export CD_LATEST_VERSION=`curl https://chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
+    wget https://chromedriver.storage.googleapis.com/${CD_LATEST_VERSION}/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip && \
     mv chromedriver /usr/local/bin && \
     rm -f chromedriver_linux64.zip
