@@ -9,7 +9,7 @@ run on local
 ```
 docker run -e ENV=local ^
            -e YML_PATH=[YmlFilePath] ^
-           -v [LocalDyanmicFolder]:[YmyFolder] ^
+           -v [LocalDyanmicFolder]:[YmlFolder] ^
            -v [LocalConfFolder]:[DockerConfFolder] ^
            --rm ^
            chk-onepanman:latest
@@ -24,14 +24,13 @@ docker run -e ENV=aws \
            chk-onepanman:latest
 ```
 
+--trial--
 ```plantuml
 class "Config" as conf {
+    singleton class.
 }
 
-class "Singleton" as singleton {
-}
-
-abstract "MainProcess" as mp {
+abstract "TemplateProcess" as tp {
     +get_story_num()
     +put_story_num()
     +send_mail()
@@ -43,8 +42,8 @@ class "AWSProcess" as aws {
 class "LocalProcess" as local {
 }
 
-mp <|-- aws
-mp <|-- local
-conf -left-> mp
-conf -up-|> singleton
+tp <|-- aws
+tp <|-- local
+aws --> conf : view
+local --> conf : view
 ```
