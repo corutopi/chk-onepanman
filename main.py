@@ -32,6 +32,7 @@ key_str = '第{}話'.format(story_num)
 
 def main():
     logger.info('Process Start.')
+    logger.info('Mode: {}'.format(conf.ENV))
     logger.info('Startup Chrome Driver.')
     options = Options()
     options.add_argument('--headless')

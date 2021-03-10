@@ -1,6 +1,8 @@
 #!/bin/bash
 
+echo ENV=$ENV
+
 if [ "$ENV" = "aws" ]; then
-  aws s3 cp s3://ss-common-s3/chkOnepanman/conf/conf_on-aws.yml $YML_PATH
+  aws s3 cp "$S3_YML_PATH" "$YML_PATH"
 fi
 python3 main.py

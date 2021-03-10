@@ -18,7 +18,9 @@ SCROLL_DOWN = yml['CheckOnepanman']['ScrollDownNum']
 KEY_FILE_PATH = yml['CheckOnepanman']['KeyFilePath']
 AWS_ACCESS_ID = yml['CheckOnepanman']['AWS']['AccessKeyId']
 AWS_SECRET_KEY = yml['CheckOnepanman']['AWS']['SecretAccessKey']
-SNS_TOPIC = yml['CheckOnepanman']['AWS']['SNSTopicARN']
+AWS_SNS_TOPIC = yml['CheckOnepanman']['AWS']['SNSTopicARN']
+AWS_S3_BUDGET = yml['CheckOnepanman']['AWS']['S3BudgetName']
+AWS_S3_KEYFILE_PATH = yml['CheckOnepanman']['AWS']['S3KeyFilePth']
 
 # class Config():
 #     _load_cnt = 0

@@ -42,32 +42,32 @@ class AwsProcess(TemplateProcess):
         ワンパンマン 第{}話 が更新されました。
         サイトで確認しましょう！
         """
-        response = sns.publish(TopicArn=conf.SNS_TOPIC,
+        response = sns.publish(TopicArn=conf.AWS_SNS_TOPIC,
                                Message=message.format(story_num),
                                Subject='Update Onepanman No.{}'.format(
                                    story_num))
         logging.debug(response)
 
     def put_story_num(self, key_file_path, num):
-        tmp_file = 'dynamic/tmp.txt'
+        tmp_file = conf.KEY_FILE_PATH
         s3 = boto3.resource(service_name='s3',
                             aws_access_key_id=conf.AWS_ACCESS_ID,
                             aws_secret_access_key=conf.AWS_SECRET_KEY)
-        bucket = s3.Bucket('ss-common-s3')
-        bucket.download_file('chkOnepanman/key.txt', tmp_file)
+        bucket = s3.Bucket(conf.AWS_S3_BUDGET)
+        bucket.download_file(conf.AWS_S3_KEYFILE_PATH, tmp_file)
 
         logging.debug('Next Story Number is ... {}.'.format(num + 1))
         with open(tmp_file, mode='w') as f:
             f.write(str(num + 1))
-        bucket.upload_file(tmp_file, 'chkOnepanman/key.txt')
+        bucket.upload_file(tmp_file, conf.AWS_S3_KEYFILE_PATH)
 
     def get_story_num(self, key_file_path):
-        tmp_file = 'dynamic/tmp.txt'
+        tmp_file = conf.KEY_FILE_PATH
         s3 = boto3.resource(service_name='s3',
                             aws_access_key_id=conf.AWS_ACCESS_ID,
                             aws_secret_access_key=conf.AWS_SECRET_KEY)
-        bucket = s3.Bucket('ss-common-s3')
-        bucket.download_file('chkOnepanman/key.txt', tmp_file)
+        bucket = s3.Bucket(conf.AWS_S3_BUDGET)
+        bucket.download_file(conf.AWS_S3_KEYFILE_PATH, tmp_file)
 
         with open(tmp_file) as f:
             story_num = int(f.read())
