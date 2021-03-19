@@ -9,6 +9,7 @@ run on local
 ```
 docker run -e ENV=local ^
            -e YML_PATH=[YmlFilePath] ^
+           -e LOG_LEVEL=[PythonLoggingLoglevel like DEBUG, INFO, etc ... ] ^
            -v [LocalDyanmicFolder]:[YmlFolder] ^
            -v [LocalConfFolder]:[DockerConfFolder] ^
            --rm ^
@@ -19,6 +20,7 @@ run on aws
 ```
 docker run -e ENV=aws \
            -e YML_PATH=/root/conf/conf.yml \
+           -e LOG_LEVEL=[PythonLoggingLoglevel like DEBUG, INFO, etc ... ] \
            -e S3_YML_PATH=[yml file(make from tmplate) path on AWS S3.] \
            --rm \
            chk-onepanman:latest

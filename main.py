@@ -1,29 +1,21 @@
 import sys
 from time import sleep
-from logging import INFO, DEBUG
+from logging import INFO
 from logging import getLogger, StreamHandler, basicConfig
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+
 import src.conf as conf
+import src.external.body as body
 
 # about log
 basicConfig(stream=sys.stdout,
             level=INFO,
             format="%(asctime)s [%(filename)s:%(lineno)d] %(levelname)-8s %(message)s")
 logger = getLogger(__name__)
-# logger.setLevel(INFO)
+logger.setLevel(conf.LOG_LEVEL)
 
-
-# env 毎にymlファイルを取得
-path = ''
-if conf.ENV == 'local':
-    path = conf.YML_PATH
-elif conf.ENV == 'aws':
-    # from S3
-    path = conf.YML_PATH
-
-import src.external.body as body
 ext = body.getProcess()
 
 story_num = ext.get_story_num(conf.KEY_FILE_PATH)
@@ -33,6 +25,7 @@ key_str = '第{}話'.format(story_num)
 def main():
     logger.info('Process Start.')
     logger.info('Mode: {}'.format(conf.ENV))
+    logger.debug('AccessURL: {}'.format(conf.TARGET_URL))
     logger.info('Startup Chrome Driver.')
     options = Options()
     options.add_argument('--headless')

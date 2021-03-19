@@ -81,5 +81,8 @@ COPY ./src ./src
 COPY ./conf ./conf
 RUN mkdir ./dynamic
 
+# default env
+ENV LOG_LEVEL INFO
+
 # assignment entry_point
 ENTRYPOINT sh ./entry_point.sh

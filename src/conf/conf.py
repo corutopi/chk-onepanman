@@ -4,12 +4,15 @@ import yaml
 # const
 ENV_AWS = 'aws'
 ENV_LOCAL = 'local'
+LOG_LEVEL_DEFAULT = 'INFO'
 
-# ENV, YML_PATH
+# from os env
 ENV = os.environ['ENV'] if 'ENV' in os.environ.keys() else ENV_LOCAL
 YML_PATH = os.environ['YML_PATH'] if 'YML_PATH' in os.environ.keys() \
     else 'conf/conf.yml'
+LOG_LEVEL = os.environ['LOG_LEVEL'] if 'LOG_LEVEL' in os.environ.keys() else LOG_LEVEL_DEFAULT
 
+# from yml file
 with open(YML_PATH) as f:
     yml = yaml.load(f, Loader=yaml.SafeLoader)
 DRIVER_PATH = yml['CheckOnepanman']['ChromeDriverPath']
