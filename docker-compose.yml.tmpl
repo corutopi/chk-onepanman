@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  chk-onepanman:
+    build: .
+    image: 'chk-onepanman'
+    container_name: 'chk-one-container'
+    environment:
+      ENV: 'local'
+      YML_PATH: '/root/conf/{{conf_file_name}}'
+      LOG_LEVEL: 'INFO'
+      S3_YML_PATH:
+    volumes:
+      - '{{local_conf_folder}}:/root/conf'
+      - '{{key_file_folder}}:/root/dynamic'

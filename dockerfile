@@ -78,7 +78,6 @@ RUN pip3 install selenium==3.141.0 PyYAML==5.3.1 boto3==1.14.46
 COPY ./main.py ./
 COPY ./entry_point.sh ./
 COPY ./src ./src
-COPY ./conf ./conf
 RUN mkdir ./dynamic
 
 # default env

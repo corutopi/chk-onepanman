@@ -4,6 +4,9 @@ build
 ```
 docker build -t chk-onepanman .
 ```
+```
+docker-compose build
+```
 
 run on local
 ```
