@@ -2,7 +2,8 @@
 .idea/
 tmp.py
 dynamic/
-conf/*.yml
+conf/*
+!conf/*.tmpl
 aa_devsup/
 docker-compose.yml
 # ##############################################################################
