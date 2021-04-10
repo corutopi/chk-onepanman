@@ -39,7 +39,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPO_NAME }}
-          VERSION: ${{ steps.set-version.output.version }}
+          VERSION: ${{ steps.set-version.outputs.version }}
         run: |
           docker build -t ${ECR_REGISTRY}/${ECR_REPOSITORY}:${VERSION} .
           docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${VERSION}
