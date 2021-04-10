@@ -5,9 +5,9 @@ import boto3
 
 
 def getProcess():
-    if conf.ENV == conf.ENV_AWS:
+    if conf.RUN_MODE == conf.MODE_AWS:
         return AwsProcess()
-    elif conf.ENV == conf.ENV_LOCAL:
+    elif conf.RUN_MODE == conf.MODE_LOCAL:
         return LocalProcess()
 
 

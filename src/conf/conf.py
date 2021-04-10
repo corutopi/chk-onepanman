@@ -2,12 +2,11 @@ import os
 import yaml
 
 # const
-ENV_AWS = 'aws'
-ENV_LOCAL = 'local'
+MODE_AWS = 'aws'
+MODE_LOCAL = 'local'
 LOG_LEVEL_DEFAULT = 'INFO'
 
 # from os env
-ENV = os.environ['ENV'] if 'ENV' in os.environ.keys() else ENV_LOCAL
 YML_PATH = os.environ['YML_PATH'] if 'YML_PATH' in os.environ.keys() \
     else 'conf/conf.yml'
 LOG_LEVEL = os.environ['LOG_LEVEL'] if 'LOG_LEVEL' in os.environ.keys() else LOG_LEVEL_DEFAULT
@@ -15,6 +14,7 @@ LOG_LEVEL = os.environ['LOG_LEVEL'] if 'LOG_LEVEL' in os.environ.keys() else LOG
 # from yml file
 with open(YML_PATH) as f:
     yml = yaml.load(f, Loader=yaml.SafeLoader)
+RUN_MODE = yml['CheckOnepanman']['RunMode']
 DRIVER_PATH = yml['CheckOnepanman']['ChromeDriverPath']
 TARGET_URL = yml['CheckOnepanman']['TargetURL']
 SCROLL_DOWN = yml['CheckOnepanman']['ScrollDownNum']

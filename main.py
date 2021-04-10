@@ -24,7 +24,7 @@ key_str = '第{}話'.format(story_num)
 
 def main():
     logger.info('Process Start.')
-    logger.info('Mode: {}'.format(conf.ENV))
+    logger.info('Mode: {}'.format(conf.RUN_MODE))
     logger.debug('AccessURL: {}'.format(conf.TARGET_URL))
     logger.info('Startup Chrome Driver.')
     options = Options()

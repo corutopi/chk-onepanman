@@ -10,7 +10,7 @@ docker-compose build
 
 run on local
 ```
-docker run -e ENV=local ^
+docker run -e YML_LOCATION=local ^
            -e YML_PATH=[YmlFilePath] ^
            -e LOG_LEVEL=[PythonLoggingLoglevel like DEBUG, INFO, etc ... ] ^
            -v [LocalDyanmicFolder]:[YmlFolder] ^
@@ -21,7 +21,7 @@ docker run -e ENV=local ^
 
 run on aws
 ```
-docker run -e ENV=aws \
+docker run -e YML_LOCATION=aws \
            -e YML_PATH=/root/conf/conf.yml \
            -e LOG_LEVEL=[PythonLoggingLoglevel like DEBUG, INFO, etc ... ] \
            -e S3_YML_PATH=[yml file(make from tmplate) path on AWS S3.] \
