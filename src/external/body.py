@@ -39,11 +39,14 @@ class AwsProcess(TemplateProcess):
                            aws_secret_access_key=conf.AWS_SECRET_KEY,
                            region_name='ap-northeast-1')
         message = """
-        ワンパンマン 第{}話 が更新されました。
+        ワンパンマン 第{storynum}話 が更新されました。
         サイトで確認しましょう！
-        """
+        
+        {url}
+        """.format(storynum=story_num, url=conf.TARGET_URL)
+        logging.debug('send message: {}'.format(message))
         response = sns.publish(TopicArn=conf.AWS_SNS_TOPIC,
-                               Message=message.format(story_num),
+                               Message=message,
                                Subject='Update Onepanman No.{}'.format(
                                    story_num))
         logging.debug(response)
